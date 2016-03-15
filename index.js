@@ -104,7 +104,7 @@ SQLdown.prototype._open = function (options, callback) {
   this.compactFreq = options.compactFrequency || 25;
   this.counter = 0;
   function createTable() {
-    return self.knexDb.schema.createTable(self.tablename, function (table) {
+    return self.knexDb.schema.createTableIfNotExists(self.tablename, function (table) {
       table.increments('id').primary();
       if (process.browser) {
         if (typeof options.keySize === 'number') {
